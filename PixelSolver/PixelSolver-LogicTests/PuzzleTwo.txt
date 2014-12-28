@@ -1,0 +1,9 @@
+Rows
+1
+1
+Columns
+0
+2
+Solution
+-#
+-#

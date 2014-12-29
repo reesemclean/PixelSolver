@@ -24,6 +24,7 @@
 		38DBB8C71A4FEB690092C32B /* PuzzleOne.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38DBB8C11A4FC5A20092C32B /* PuzzleOne.txt */; };
 		38DBB8C81A4FEE680092C32B /* PuzzleTwo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38DBB8C31A4FC61B0092C32B /* PuzzleTwo.txt */; };
 		38DBB8C91A4FEE6E0092C32B /* PuzzleThree.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38DBB8C51A4FC7460092C32B /* PuzzleThree.txt */; };
+		38DBB8CB1A50C5F80092C32B /* PuzzleFormatParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBB8CA1A50C5F80092C32B /* PuzzleFormatParsing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +86,7 @@
 		38DBB8911A4FAE590092C32B /* PixelSolverLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixelSolverLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DBB8941A4FAE590092C32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DBB8951A4FAE590092C32B /* PixelSolverLogic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixelSolverLogic.h; sourceTree = "<group>"; };
-		38DBB89B1A4FAE590092C32B /* PixelSolver-LogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "PixelSolver-LogicTests.xctest"; path = PixelSolverLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38DBB89B1A4FAE590092C32B /* PixelSolverLogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelSolverLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DBB8A31A4FAE590092C32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DBB8B31A4FB00D0092C32B /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		38DBB8B71A4FB2360092C32B /* Clue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clue.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		38DBB8C11A4FC5A20092C32B /* PuzzleOne.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PuzzleOne.txt; sourceTree = "<group>"; };
 		38DBB8C31A4FC61B0092C32B /* PuzzleTwo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PuzzleTwo.txt; sourceTree = "<group>"; };
 		38DBB8C51A4FC7460092C32B /* PuzzleThree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PuzzleThree.txt; sourceTree = "<group>"; };
+		38DBB8CA1A50C5F80092C32B /* PuzzleFormatParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleFormatParsing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +149,7 @@
 				38DBB8671A4FACBE0092C32B /* PixelSolver.app */,
 				38DBB87C1A4FACBE0092C32B /* PixelSolverTests.xctest */,
 				38DBB8911A4FAE590092C32B /* PixelSolverLogic.framework */,
-				38DBB89B1A4FAE590092C32B /* PixelSolver-LogicTests.xctest */,
+				38DBB89B1A4FAE590092C32B /* PixelSolverLogicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +200,7 @@
 				38DBB8B31A4FB00D0092C32B /* Board.swift */,
 				38DBB8B71A4FB2360092C32B /* Clue.swift */,
 				38DBB8BD1A4FC0C30092C32B /* Solution.swift */,
+				38DBB8CA1A50C5F80092C32B /* PuzzleFormatParsing.swift */,
 			);
 			name = PixelSolverLogic;
 			path = "PixelSolver-Logic";
@@ -316,7 +319,7 @@
 			);
 			name = PixelSolverLogicTests;
 			productName = "PixelSolver-LogicTests";
-			productReference = 38DBB89B1A4FAE590092C32B /* PixelSolver-LogicTests.xctest */;
+			productReference = 38DBB89B1A4FAE590092C32B /* PixelSolverLogicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -427,6 +430,7 @@
 				38DBB8B41A4FB00D0092C32B /* Board.swift in Sources */,
 				38DBB8BE1A4FC0C30092C32B /* Solution.swift in Sources */,
 				38DBB8B81A4FB2360092C32B /* Clue.swift in Sources */,
+				38DBB8CB1A50C5F80092C32B /* PuzzleFormatParsing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

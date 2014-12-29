@@ -14,7 +14,7 @@ public struct Board {
     
     public let rows: [Clue]
     public let columns: [Clue]
-    public lazy var solution: Solution = self.createSolution();
+    public lazy var solution: Solution = self.solve(nil);
     
     public init(rows: [Clue], columns: [Clue]) {
         self.rows = rows
@@ -49,44 +49,34 @@ public struct Board {
         
     }
     
-    func createSolution() -> Solution {
+    func solve(partialSolution: Solution?) -> Solution {
         
-        return Solution(lines: []);
-        
-    }
-    
-}
-
-func parseLinesFromPuzzleFormatString(lines: [String]) -> (rows: [String], columns: [String])? {
-    
-    if let indexOfRowString = find(lines, "Rows") {
-        
-        if let indexOfColumnString = find(lines, "Columns") {
+        let currentSolution: Solution = {
             
-            if (indexOfColumnString > indexOfRowString) {
-                
-                let rows = Array(lines[Range(start: indexOfRowString + 1, end: indexOfColumnString)])
-
-                if let indexOfSolutionString = find(lines, "Solution") {
-                    
-                    if (indexOfSolutionString > indexOfColumnString) {
-                        
-                        let columns = Array(lines[Range(start: indexOfColumnString + 1, end: indexOfSolutionString)])
-                        return (rows, columns)
-                    }
-                    
-                } else {
-                    
-                    let columns = Array(lines[Range(start: indexOfColumnString + 1, end: lines.count)])
-                    return (rows, columns)
-                    
-                }
-                
+            if (partialSolution == nil) {
+                return Solution(numberOfRows: self.rows.count, numberOfColumns: self.columns.count)
+            } else {
+                return partialSolution!
             }
             
+        }()
+        
+        if (currentSolution.solved) {
+            return currentSolution
         }
+        
+        //Map a tuple of solutionline with clue
+        //map these tuples to a new array of solutionlines
+        let solutionLines = map(Zip2(self.rows, currentSolution.lines), { (clue: Clue, solutionLine: SolutionLine) -> SolutionLine in
+            //return SolutionLine(numberOfCells: )
+        })
+        
+        if (false) { //Unsolvable case
+            return currentSolution
+        }
+        
+        return solve(currentSolution)
         
     }
     
-    return nil
 }

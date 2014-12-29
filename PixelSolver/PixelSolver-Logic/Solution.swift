@@ -12,8 +12,26 @@ public struct Solution {
     
     public let lines: [SolutionLine]
     
-    init(lines: [SolutionLine]) {
-        self.lines = lines;
+    public init(numberOfRows: Int, numberOfColumns: Int) {
+        
+        self.lines = Array(count: numberOfRows, repeatedValue: SolutionLine(numberOfCells: numberOfColumns))
+        
+    }
+    
+    public init(lines: [SolutionLine]) {
+        
+        self.lines = lines
+        
+    }
+    
+    var solved: Bool {
+    
+        return self.lines.reduce(true, combine: { (overallStatus: Bool, line: SolutionLine) in
+            
+            return overallStatus && line.solved
+            
+        })
+        
     }
     
     public func equalToSolutionFromPuzzleFormat(puzzleFormatString: String) -> Bool {
@@ -42,13 +60,16 @@ public struct Solution {
                     let cellStatus = solutionLineFromSelf.cellStatuses[itemIndex]
                     let statusFromPuzzleFormat = solutionItems[itemIndex]
                     
-                    if (cellStatus == true) {
+                    switch cellStatus {
+                    case .Unknown:
+                        return false
+                    case .Marked:
                         
                         if (statusFromPuzzleFormat != "#") {
                             return false
                         }
                         
-                    } else {
+                    case .Unmarked:
                         
                         if (statusFromPuzzleFormat != "-") {
                             return false
@@ -66,45 +87,35 @@ public struct Solution {
         
         return true
     }
-    
-    func parseSolutionLinesFromPuzzleFormatString(lines: [String]) -> [String]? {
-        
-        let possibleIndexOfSolutionString = find(lines, "Solution")
-        
-        if (possibleIndexOfSolutionString == nil) {
-            return nil
-        }
-        
-        let indexOfSolutionString = possibleIndexOfSolutionString!
-        
-        if let indexOfRowString = find(lines, "Rows") {
-
-            if (indexOfRowString > indexOfSolutionString) {
-                return nil;
-            }
-            
-        }
-        
-        if let indexOfColumnString = find(lines, "Columns") {
-            
-            if (indexOfColumnString > indexOfSolutionString) {
-                return nil;
-            }
-            
-        }
-        
-        return Array(lines[Range(start: indexOfSolutionString + 1, end: lines.count)])
-
-    }
 
 }
 
 public struct SolutionLine {
     
-    public let cellStatuses: [Bool]
+    public let cellStatuses: [CellStatus]
     
-    init(cellStatuses: [Bool]) {
-        self.cellStatuses = cellStatuses
+    init(numberOfCells: Int) {
+        
+        self.cellStatuses = Array(count: numberOfCells, repeatedValue: .Unknown)
+        
     }
+    
+    var solved: Bool {
+        
+        return self.cellStatuses.reduce(true, combine: { (overallStatus: Bool, cellStatus: CellStatus) in
+          
+            return overallStatus && cellStatus != .Unknown
+            
+        })
+        
+    }
+    
+}
+
+public enum CellStatus {
+    
+    case Unknown
+    case Marked
+    case Unmarked
     
 }

@@ -65,10 +65,12 @@ public struct Board {
             return currentSolution
         }
         
-        //Map a tuple of solutionline with clue
-        //map these tuples to a new array of solutionlines
         let solutionLines = map(Zip2(self.rows, currentSolution.lines), { (clue: Clue, solutionLine: SolutionLine) -> SolutionLine in
             //return SolutionLine(numberOfCells: )
+            let solutionLineAfterPunctuatingSpaces = self.solutionLinePunctuatingSpaces(clue, solutionLine: solutionLine)
+            let solutionLineAfterCheckingForOverlaps = self.solutionLineCheckingForOverlaps(clue, solutionLine:solutionLineAfterPunctuatingSpaces)
+            
+            return solutionLineAfterCheckingForOverlaps
         })
         
         if (false) { //Unsolvable case
@@ -76,6 +78,16 @@ public struct Board {
         }
         
         return solve(currentSolution)
+        
+    }
+    
+    func solutionLinePunctuatingSpaces(clue: Clue, solutionLine: SolutionLine) -> SolutionLine {
+        
+        
+        
+    }
+    
+    func solutionLineCheckingForOverlaps(clue: Clue, solutionLine: SolutionLine) -> SolutionLine {
         
     }
     

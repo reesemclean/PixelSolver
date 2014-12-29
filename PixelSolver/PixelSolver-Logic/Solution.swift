@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Solution {
+public struct Solution: Equatable {
     
     public let lines: [SolutionLine]
     
@@ -63,13 +63,13 @@ public struct Solution {
                     switch cellStatus {
                     case .Unknown:
                         return false
-                    case .Marked:
+                    case .Boxed:
                         
                         if (statusFromPuzzleFormat != "#") {
                             return false
                         }
                         
-                    case .Unmarked:
+                    case .Space:
                         
                         if (statusFromPuzzleFormat != "-") {
                             return false
@@ -90,7 +90,7 @@ public struct Solution {
 
 }
 
-public struct SolutionLine {
+public struct SolutionLine: Equatable {
     
     public let cellStatuses: [CellStatus]
     
@@ -115,7 +115,37 @@ public struct SolutionLine {
 public enum CellStatus {
     
     case Unknown
-    case Marked
-    case Unmarked
+    case Boxed
+    case Space
     
+}
+
+public func ==(lhs: Solution, rhs: Solution) -> Bool {
+    
+    if lhs.lines.count != rhs.lines.count {
+        return false
+    }
+    
+    return reduce(Zip2(lhs.lines, rhs.lines), true, { (overallStatus: Bool, solutionTuple: (SolutionLine, SolutionLine)) -> Bool in
+        
+        let (leftSolutionLine, rightSolutionLine) = solutionTuple
+        return overallStatus && leftSolutionLine == rightSolutionLine
+
+    })
+    
+}
+
+public func ==(lhs: SolutionLine, rhs: SolutionLine) -> Bool {
+    
+    if lhs.cellStatuses.count != rhs.cellStatuses.count {
+        return false
+    }
+    
+    return reduce(Zip2(lhs.cellStatuses, rhs.cellStatuses), true, { (overallStatus: Bool, statusTuple: (CellStatus, CellStatus)) -> Bool in
+        
+        let (leftStatus, rightStatus) = statusTuple
+        return overallStatus && leftStatus == rightStatus
+        
+    })
+
 }
